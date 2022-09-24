@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:music_app/constants/color_constants.dart';
 import 'components/login_page.dart';
 import 'layout_element/box_music.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'app_img.dart';
 
 void main() {
@@ -31,6 +33,7 @@ class _MyScaffoldPageState extends State<MyScaffoldPage> {
   // final int _count = 0;
   final String _un = "Duy Nguyen";
   final String _pw = "duynguyen11062002@gmail.com";
+  var _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,42 +45,37 @@ class _MyScaffoldPageState extends State<MyScaffoldPage> {
         ),
       ),
       body: PageCenter(),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: '#83EAF1'.toColor(),
-        onPressed: () => showDialog<String>(
-          context: context,
-          builder: (BuildContext context) => AlertDialog(
-            title: const Text(
-              'Error',
-              style: TextStyle(color: Colors.red),
+      bottomNavigationBar: SalomonBottomBar(
+          currentIndex: _currentIndex,
+          onTap: (i) => setState(() => _currentIndex = i),
+          items: [
+            SalomonBottomBarItem(
+              icon: Icon(Icons.home),
+              title: Text("Home"),
+              selectedColor: ColorPalette.lightblue,
             ),
-            content: const Text(
-              'There is no song to search',
-              style: TextStyle(color: Colors.black),
+
+            /// Likes
+            SalomonBottomBarItem(
+              icon: Icon(Icons.favorite_border),
+              title: Text("Likes"),
+              selectedColor: ColorPalette.lightblue,
             ),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () => Navigator.pop(context, 'Cancel'),
-                child: const Text('Cancel'),
-              ),
-              TextButton(
-                onPressed: () => Navigator.pop(context, 'OK'),
-                child: const Text('OK'),
-              ),
-            ],
-          ),
-        ),
-        child: Icon(Icons.search),
-        hoverColor: Colors.blue[200],
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomAppBar(
-        color: '#83EAF1'.toColor(),
-        // shape: const CircularNotchedRectangle(),
-        child: Container(
-          height: 50,
-        ),
-      ),
+
+            /// Search
+            SalomonBottomBarItem(
+              icon: Icon(Icons.search),
+              title: Text("Search"),
+              selectedColor: ColorPalette.lightblue,
+            ),
+
+            /// Profile
+            SalomonBottomBarItem(
+              icon: Icon(Icons.person),
+              title: Text("Profile"),
+              selectedColor: ColorPalette.lightblue,
+            ),
+          ]),
       drawer: Drawer(
         backgroundColor: '#06008A'.toColor(),
         child: Container(
@@ -169,9 +167,8 @@ class _MyScaffoldPageState extends State<MyScaffoldPage> {
                   color: Colors.blue[100],
                 ),
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => LoginPage()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => LoginPage()));
                 },
               ),
             ],
@@ -190,6 +187,8 @@ class PageCenter extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Container(
+      width: width,
+      height: height,
       decoration: BoxDecoration(
           gradient: LinearGradient(
               begin: Alignment.topCenter,
@@ -198,20 +197,23 @@ class PageCenter extends StatelessWidget {
             '#63A4FF'.toColor(),
             '#83EAF1'.toColor(),
           ])),
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: List.generate(albMusic.length, (index) {
-            return Center(  
-                    child: BoxMusic(albMusic: albMusic[index]),  
-                  ); 
-          })
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: List.generate(albMusic.length, (index) {
+                return Center(
+                  child: BoxMusic(albMusic: albMusic[index]),
+                );
+              })),
         ),
       ),
     );
   }
 }
+
+// Widget ListTile()
 
 extension ColorExtension on String {
   toColor() {
@@ -222,4 +224,3 @@ extension ColorExtension on String {
     return Color(int.parse(buffer.toString(), radix: 16));
   }
 }
-
