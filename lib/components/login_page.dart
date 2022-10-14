@@ -16,6 +16,11 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      initialRoute: '/',
+      routes: {
+        '/signup_page':(context) => SignupPage(),
+        // '/home_page':(context) => MyApp(),
+      },
       home: PageCenter(),
     );
   }
@@ -57,7 +62,7 @@ class _PageCenterState extends State<PageCenter> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => MyScaffoldPage()));
+                          MaterialPageRoute(builder: (context) => MyApp()));
                       },
                     )
                   ],
@@ -210,10 +215,7 @@ class _PageCenterState extends State<PageCenter> {
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SignupPage()));
+                          Navigator.pushNamed(context, '/signup_page');
                         },
                         child: Text(
                           'Sign up',

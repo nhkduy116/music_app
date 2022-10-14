@@ -44,20 +44,20 @@ const List<AlbMusic> albMusic = const <AlbMusic>[
       colorStart: ColorPalette.lightPinkPersona,
       colorEnd: ColorPalette.mint),
   const AlbMusic(
-      title: 'Persona',
-      img: Images.alb_persona,
-      colorStart: ColorPalette.lightPinkPersona,
-      colorEnd: ColorPalette.mint),
+      title: 'Wing',
+      img: Images.alb_wing,
+      colorStart: ColorPalette.lightWhiteWingStart,
+      colorEnd: ColorPalette.lightBlueLY),
   const AlbMusic(
-      title: 'Persona',
-      img: Images.alb_persona,
-      colorStart: ColorPalette.lightPinkPersona,
-      colorEnd: ColorPalette.mint),
+      title: 'We are Bullet Proof',
+      img: Images.alb_bullet,
+      colorStart: ColorPalette.lightBlackBulletStart,
+      colorEnd: Colors.orange),
   const AlbMusic(
-      title: 'Persona',
-      img: Images.alb_persona,
-      colorStart: ColorPalette.lightPinkPersona,
-      colorEnd: ColorPalette.mint),
+      title: 'BE',
+      img: Images.alb_be,
+      colorStart: ColorPalette.lightWhiteWingStart,
+      colorEnd: ColorPalette.lightPinkPersona),
 ];
 
 class BoxMusic extends StatelessWidget {

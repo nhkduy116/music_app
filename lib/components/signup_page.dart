@@ -57,7 +57,7 @@ class _PageCenterSignupState extends State<PageCenterSignup> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => MyScaffoldPage()));
+                            builder: (context) => MyApp()));
                   },
                 )
               ],
