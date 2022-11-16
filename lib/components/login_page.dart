@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_new, sort_child_properties_last, prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, import_of_legacy_library_into_null_safe, depend_on_referenced_packages, unnecessary_import
+// ignore_for_file: unnecessary_new, sort_child_properties_last, prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace, import_of_legacy_library_into_null_safe, depend_on_referenced_packages, unnecessary_import, avoid_unnecessary_containers, implementation_imports
 
 import 'package:flutter/material.dart';
 import '../constants/color_constants.dart';

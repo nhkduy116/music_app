@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, import_of_legacy_library_into_null_safe, unused_import, unnecessary_new
+// ignore_for_file: prefer_const_constructors, import_of_legacy_library_into_null_safe, unused_import, unnecessary_new, avoid_unnecessary_containers, prefer_const_literals_to_create_immutables, prefer_final_fields
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -176,8 +176,7 @@ class _SliderView extends StatelessWidget {
               accountName: Text(_un),
               accountEmail: Text(_pw),
               currentAccountPicture: CircleAvatar(
-                backgroundColor: Colors.yellow,
-                child: Text('DN'),
+                backgroundImage: AssetImage(Images.img_account),
               ),
             ),
             ListTile(
@@ -258,29 +257,29 @@ class PageCenter extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Container(
-      color: ColorPalette.primaryColor,
-      width: width,
-      height: height,
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
+        color: ColorPalette.primaryColor,
+        width: width,
+        height: height,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 // imageSlider(context),
                 Container(
                   child: Column(
                     children: List.generate(albMusic.length, (index) {
-                    return Center(
-                      child: BoxMusic(albMusic: albMusic[index]),
-                    );
-                  }),
+                      return Center(
+                        child: BoxMusicss(albMusic: albMusic[index]),
+                      );
+                    }),
                   ),
                 )
               ],
-        ),
-      ),
-    ));
+            ),
+          ),
+        ));
   }
 }
 
@@ -290,7 +289,8 @@ Swiper imageSlider(context) {
   return new Swiper(
     autoplay: true,
     itemBuilder: (BuildContext context, int index) {
-      return new Image.asset('assets/butter.png',
+      return new Image.asset(
+        'assets/butter.png',
         fit: BoxFit.fitHeight,
       );
     },

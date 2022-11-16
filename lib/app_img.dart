@@ -1,5 +1,7 @@
+// ignore_for_file: prefer_interpolation_to_compose_strings, constant_identifier_names
+
 class Images {
-  static const String imgPath = 'assets/';
+  static const String imgPath = 'assets/images/';
 
   // static const String alb_be = imgPath + 'be.webp';
   static const String alb_proof = imgPath + 'proof.png';
@@ -13,4 +15,6 @@ class Images {
 
   static const String login_layout = imgPath + 'login_img.png';
   static const String signup_layout = imgPath + 'signup_img.png';
+
+  static const String img_account = imgPath + 'img_account.jpg';
 }

@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:flutter/material.dart';
 
 class ColorPalette {
@@ -19,4 +21,10 @@ class ColorPalette {
   static const Color lightWhiteWingStart = Color.fromRGBO(253, 253, 253, 1);
   static const Color lightWhiteWingEnd = Color.fromRGBO(253, 253, 253, 1);
   static const Color lightBlackBulletStart = Color.fromRGBO(35, 31, 32, 1);
+  static const Color txtNameOfSong = Colors.white;
+  static const Color txtSinger = Color(0xff7ab8bf);
+  static const Color whiteIcon = Colors.white;
+  static const Color checkIcon = Colors.blue;
+  static const Color avtiveSliderMusic = Color(0xffffff00);
+  static const Color inavtiveSliderMusic = Color(0xff348898);
 }
