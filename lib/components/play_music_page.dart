@@ -2,29 +2,34 @@
 
 import 'dart:async';
 import 'dart:ffi';
+import 'dart:io';
 import 'dart:math';
 import 'dart:ui';
 
+// import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:fluttericon/entypo_icons.dart';
 import 'package:fluttericon/fontelico_icons.dart';
-import 'package:just_audio/just_audio.dart';
+// import 'package:just_audio/just_audio.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:music_app/app_img.dart';
+import 'package:music_app/constants/app_img.dart';
 import 'package:music_app/constants/color_constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class PlayMusicPage extends StatefulWidget {
   final String imgMusic;
   final String nameOfSong;
   final String singer;
+  final urlMusic;
   const PlayMusicPage(
       {Key? key,
       required this.imgMusic,
       required this.nameOfSong,
-      required this.singer})
+      required this.singer,
+      required this.urlMusic})
       : super(key: key);
 
   @override
@@ -55,7 +60,7 @@ class _PlayMusicPageState extends State<PlayMusicPage>
   Color heartColor = ColorPalette.whiteIcon;
   Color downloadColor = ColorPalette.whiteIcon;
 
-  IconData listIcon = Icons.playlist_add;
+  IconData listIcon = Icons.playlist_add; 
   IconData playIcon = Entypo.play;
   IconData heartIcon = Entypo.heart_empty;
 
@@ -64,6 +69,8 @@ class _PlayMusicPageState extends State<PlayMusicPage>
   @override
   void initState() {
     super.initState();
+
+    setAudio();
 
     controller = AnimationController(
         vsync: this, duration: Duration(milliseconds: 20000));
@@ -75,12 +82,43 @@ class _PlayMusicPageState extends State<PlayMusicPage>
     });
 
     setRotation(360);
+
+    //Listen to states: playing, paused, stoped
+    audioPlayer.onPlayerStateChanged.listen((state) {
+      setState(() {
+        isPlaying = state == PlayerState.playing;
+      });
+    });
+
+    //Listen to audio duration
+    audioPlayer.onDurationChanged.listen((newDuration) {
+      setState(() {
+        duration = newDuration;
+      });
+    });
+
+    //Listen to audio positon
+    audioPlayer.onPositionChanged.listen((newPosition) {
+      position = newPosition;
+    });
+  }
+
+  Future setAudio() async {
+    //Repeat song when completed
+    audioPlayer.setReleaseMode(ReleaseMode.loop);
+
+    //load audio from assets 
+    final player = AudioCache(prefix: 'assets/musics/');
+    final url = await player.load(widget.urlMusic);
+    // audioPlayer.setSourceAsset(url.path);
+    // audioPlayer.setSourceUrl(url.path);
+    audioPlayer.setSourceDeviceFile(url.path);
   }
 
   @override
   void dispose() {
     controller.dispose();
-    audioPlayer.dispose();
+    // audioPlayer.dispose();
     super.dispose();
   }
 
@@ -111,7 +149,8 @@ class _PlayMusicPageState extends State<PlayMusicPage>
         elevation: 0,
         backgroundColor: ColorPalette.primaryColor,
         leading: GestureDetector(
-          onTap: () {
+          onTap: () async {
+            await audioPlayer.pause();
             Navigator.pop(context);
           },
           child: Icon(Icons.arrow_back),
@@ -214,18 +253,17 @@ class _PlayMusicPageState extends State<PlayMusicPage>
                       });
                       if (checkHeart == true) {
                         showDialog(
-                          context: context,
-                          builder: (BuildContext builderContext) {
-                            _timer = Timer(Duration(seconds: 1), () {
-                              Navigator.of(context).pop();
-                            });
+                            context: context,
+                            builder: (BuildContext builderContext) {
+                              _timer = Timer(Duration(seconds: 1), () {
+                                Navigator.of(context).pop();
+                              });
 
-                            return AlertDialog(
-                              backgroundColor: Colors.yellow.shade200,
-                              content: Text('Add this song to Your Favorite'),
-                          );
-                          }
-                        ).then((val){
+                              return AlertDialog(
+                                backgroundColor: Colors.yellow.shade200,
+                                content: Text('Add this song to Your Favorite'),
+                              );
+                            }).then((val) {
                           if (_timer.isActive) {
                             _timer.cancel();
                           }
@@ -274,7 +312,13 @@ class _PlayMusicPageState extends State<PlayMusicPage>
                 min: 0,
                 max: duration.inSeconds.toDouble(),
                 value: position.inSeconds.toDouble(),
-                onChanged: (value) async {}),
+                onChanged: (value) async {
+                  final position = Duration(seconds: value.toInt());  
+                  await audioPlayer.seek(position);
+
+                  //Optional: play audio if paused
+                  await audioPlayer.resume();
+                }),
             Padding(
               padding: const EdgeInsets.only(left: 20, right: 20),
               child: Row(
@@ -310,39 +354,38 @@ class _PlayMusicPageState extends State<PlayMusicPage>
                       size: 21,
                     ),
                   ),
-                  CircleAvatar(
-                    radius: 35,
-                    backgroundColor: ColorPalette.avtiveSliderMusic,
-                    child: IconButton(
-                      onPressed: () {
-                        if (isPlay == false) {
-                          if (isLoading == false) {
-                            controller.forward(from: 0);
-                            isLoading = true;
-                            setState(() {
-                              playIcon = Entypo.pause;
-                            });
-                            isPlay = !isPlay;
-                          } else {
-                            controller.forward(from: controller.value);
-                            setState(() {
-                              playIcon = Entypo.pause;
-                            });
-                            isPlay = !isPlay;
-                          }
-                          // playIcon = Entypo.play;
-                        } else {
-                          controller.stop();
+                  GestureDetector(
+                    onTap: () async {
+                      if (isPlay == false) {
+                        if (isLoading == false) {
+                          controller.forward(from: 0);
+                          isLoading = true;
                           setState(() {
-                              playIcon = Entypo.play;
-                            });
+                            playIcon = Entypo.pause;
+                          });
+                          isPlay = !isPlay;
+                        } else {
+                          controller.forward(from: controller.value);
+                          setState(() {
+                            playIcon = Entypo.pause;
+                          });
                           isPlay = !isPlay;
                         }
-                        // setState(() {
-                        //   isPlay == false ? playIcon = Entypo.play : playIcon = Entypo.pause;
-                        // });
-                      },
-                      icon: Icon(
+                        // playIcon = Entypo.play;
+                        await audioPlayer.resume();
+                      } else {
+                        await audioPlayer.pause();
+                        controller.stop();
+                        setState(() {
+                          playIcon = Entypo.play;
+                        });
+                        isPlay = !isPlay;
+                      }
+                    },
+                    child: CircleAvatar(
+                      radius: 35,
+                      backgroundColor: ColorPalette.avtiveSliderMusic,
+                      child: Icon(
                         playIcon,
                         color: ColorPalette.primaryColor,
                       ),
@@ -359,7 +402,7 @@ class _PlayMusicPageState extends State<PlayMusicPage>
                     child: Icon(
                       Fontelico.spin3,
                       color: ColorPalette.whiteIcon,
-                      size: 21,
+                      size: 19,
                     ),
                   ),
                 ],

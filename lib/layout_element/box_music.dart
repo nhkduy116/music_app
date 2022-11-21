@@ -2,74 +2,69 @@
 
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:music_app/app_img.dart';
+import 'package:music_app/constants/app_img.dart';
+import '../classes/classes.dart';
 import '../components/play_music_page.dart';
 import '../constants/color_constants.dart';
 import 'package:music_app/main.dart';
-
-class AlbMusic {
-  final String title;
-  final String img;
-  final String singer;
-  final Color colorStart;
-  final Color colorEnd;
-  const AlbMusic(
-      {required this.title,
-      required this.img,
-      required this.singer,
-      required this.colorStart,
-      required this.colorEnd});
-}
 
 const List<AlbMusic> albMusic = const <AlbMusic>[
   const AlbMusic(
       title: 'Proof',
       img: Images.alb_proof,
-      singer: 'Bangtan',
+      singer: '방탄소년단',
       colorStart: ColorPalette.black,
-      colorEnd: ColorPalette.red),
+      colorEnd: ColorPalette.red,
+      url: 'proof.mp3'),
   const AlbMusic(
       title: 'Butter',
       img: Images.alb_butter,
-      singer: 'Bangtan',
+      singer: '방탄소년단',
       colorStart: ColorPalette.yellow,
-      colorEnd: ColorPalette.orange),
+      colorEnd: ColorPalette.orange,
+      url: 'butter.mp3'),
   const AlbMusic(
       title: 'Love Yourself: Answer',
       img: Images.alb_ly_answer,
-      singer: 'Bangtan',
+      singer: '방탄소년단',
       colorStart: ColorPalette.lightBlueLY,
-      colorEnd: ColorPalette.mint),
+      colorEnd: ColorPalette.mint,
+      url: 'answerLY.mp3'),
   const AlbMusic(
       title: 'Love Yourself: Tear',
       img: Images.alb_ly_tear,
-      singer: 'Bangtan',
+      singer: '방탄소년단',
       colorStart: ColorPalette.lightBlackLY,
-      colorEnd: ColorPalette.red),
+      colorEnd: ColorPalette.red,
+      url: 'lovemaze.mp3'),
   const AlbMusic(
       title: 'Persona',
       img: Images.alb_persona,
-      singer: 'Bangtan',
+      singer: '방탄소년단',
       colorStart: ColorPalette.lightPinkPersona,
-      colorEnd: ColorPalette.mint),
+      colorEnd: ColorPalette.mint,
+      url: 'persona.mp3'),
   const AlbMusic(
       title: 'Wing',
       img: Images.alb_wing,
-      singer: 'Bangtan',
+      singer: '방탄소년단',
       colorStart: ColorPalette.lightWhiteWingStart,
-      colorEnd: ColorPalette.lightBlueLY),
+      colorEnd: ColorPalette.lightBlueLY,
+      url: 'wing.mp3'),
   const AlbMusic(
       title: 'We are Bullet Proof',
       img: Images.alb_bullet,
-      singer: 'Bangtan',
+      singer: '방탄소년단',
       colorStart: ColorPalette.lightBlackBulletStart,
-      colorEnd: Colors.orange),
+      colorEnd: Colors.orange,
+      url: 'bulletproof.mp3'),
   const AlbMusic(
       title: 'BE',
       img: Images.alb_be,
-      singer: 'Bangtan',
+      singer: '방탄소년단',
       colorStart: ColorPalette.lightWhiteWingStart,
-      colorEnd: ColorPalette.lightPinkPersona),
+      colorEnd: ColorPalette.lightPinkPersona,
+      url: 'be.mp3'),
 ];
 
 class BoxMusicss extends StatefulWidget {
@@ -112,7 +107,8 @@ class _BoxMusicssState extends State<BoxMusicss> {
                 builder: (context) => PlayMusicPage(
                     imgMusic: widget.albMusic.img,
                     nameOfSong: widget.albMusic.title,
-                    singer: widget.albMusic.singer)));
+                    singer: widget.albMusic.singer,
+                    urlMusic: widget.albMusic.url,)));
       },
       child: Container(
         margin: EdgeInsets.only(bottom: 15),
@@ -120,81 +116,86 @@ class _BoxMusicssState extends State<BoxMusicss> {
         height: height / 8,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          // color: Color.fromRGBO(254, 119, 156, 1)
+          color: widget.albMusic.colorStart
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Expanded(
-              flex: 1,
-              child: ClipRRect(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(8),
-                    bottomLeft: Radius.circular(8)),
-                child: Image(
-                  image: AssetImage(widget.albMusic.img),
-                  fit: BoxFit.fill,
-                  width: width,
-                  height: height,
+            Container(
+              child: Expanded(
+                flex: 1,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      bottomLeft: Radius.circular(8),
+                    ),
+                  child: Image(
+                    image: AssetImage(widget.albMusic.img),
+                    fit: BoxFit.fill,
+                    width: width,
+                    height: height,
+                  ),
                 ),
               ),
             ),
-            Expanded(
-              flex: 2,
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(8),
-                        bottomRight: Radius.circular(8)),
-                    gradient: LinearGradient(
-                      begin: Alignment.centerRight,
-                      end: Alignment.centerLeft,
-                      colors: [
-                        widget.albMusic.colorEnd,
-                        widget.albMusic.colorStart
-                      ],
-                    )),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Text(
-                      widget.albMusic.title,
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        GestureDetector(
-                          onTap: (() {}),
-                          child: Icon(
-                            Icons.skip_previous,
-                            color: Colors.white,
-                            size: 35,
+            Container(
+              child: Expanded(
+                flex: 2,
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(8),
+                          bottomRight: Radius.circular(8)),
+                      gradient: LinearGradient(
+                        begin: Alignment.centerRight,
+                        end: Alignment.centerLeft,
+                        colors: [
+                          widget.albMusic.colorEnd,
+                          widget.albMusic.colorStart
+                        ],
+                      )),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Text(
+                        widget.albMusic.title,
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          GestureDetector(
+                            onTap: (() {}),
+                            child: Icon(
+                              Icons.skip_previous,
+                              color: Colors.white,
+                              size: 35,
+                            ),
                           ),
-                        ),
-                        GestureDetector(
-                          onTap: (() {
-                            setState(() {
-                              _color = !_color;
-                            });
-                          }),
-                          child: Icon(
-                            getData(_color),
-                            color: Colors.white,
-                            size: 35,
+                          GestureDetector(
+                            onTap: (() {
+                              setState(() {
+                                _color = !_color;
+                              });
+                            }),
+                            child: Icon(
+                              getData(_color),
+                              color: Colors.white,
+                              size: 35,
+                            ),
                           ),
-                        ),
-                        GestureDetector(
-                          onTap: (() {}),
-                          child: Icon(
-                            Icons.skip_next,
-                            color: Colors.white,
-                            size: 35,
+                          GestureDetector(
+                            onTap: (() {}),
+                            child: Icon(
+                              Icons.skip_next,
+                              color: Colors.white,
+                              size: 35,
+                            ),
                           ),
-                        ),
-                      ],
-                    )
-                  ],
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),

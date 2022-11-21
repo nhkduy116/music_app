@@ -1,11 +1,11 @@
-// ignore_for_file: prefer_const_constructors, sort_child_properties_last, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last, prefer_const_literals_to_create_immutables, import_of_legacy_library_into_null_safe
 
 import '../main.dart';
 import 'package:flutter/material.dart';
 import 'login_page.dart';
 import '../constants/color_constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:music_app/app_img.dart';
+import 'package:music_app/constants/app_img.dart';
 
 class SignupPage extends StatelessWidget {
   const SignupPage({Key? key}) : super(key: key);

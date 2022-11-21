@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 class ColorPalette {
   static const Color primaryColor = Color.fromRGBO(24, 25, 31, 1);
+  static const Color primaryText = Colors.white;
+  static const Color greyText = Colors.grey;
   static const Color lightblue = Colors.blue;
   static const Color blueBold = Color.fromRGBO(34, 103, 246, 1);
   static const Color grey = Color(0xffBEBEBE);

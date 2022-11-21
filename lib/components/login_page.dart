@@ -6,7 +6,7 @@ import '../main.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:music_app/app_img.dart';
+import 'package:music_app/constants/app_img.dart';
 import 'signup_page.dart';
 
 class LoginPage extends StatelessWidget {

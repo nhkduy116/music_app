@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttericon/font_awesome_icons.dart';
+import 'package:music_app/components/radio_page.dart';
 import 'package:music_app/components/signup_page.dart';
 import 'package:music_app/constants/color_constants.dart';
 import 'components/login_page.dart';
@@ -9,7 +11,7 @@ import 'layout_element/box_music.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'app_img.dart';
+import 'constants/app_img.dart';
 import 'components/favorite_page.dart';
 
 void main() {
@@ -63,9 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           HomePage(),
           FavoritePage(),
-          Container(
-            color: ColorPalette.primaryColor,
-          ),
+          RadioPage(),
           Container(
             color: ColorPalette.primaryColor,
           ),
@@ -81,18 +81,22 @@ class _MyHomePageState extends State<MyHomePage> {
           onItemSelected: (index) => setState(() => _currentIndex = index),
           items: <BottomNavyBarItem>[
             BottomNavyBarItem(
-                icon: Icon(Icons.home),
+              textAlign: TextAlign.center,
+                icon: Icon(Icons.home, size: 24,),
                 title: Text("Home"),
                 activeColor: ColorPalette.lightblue),
             BottomNavyBarItem(
-                icon: Icon(Icons.favorite_border),
+                textAlign: TextAlign.center,
+                icon: _currentIndex == 1 ? Icon(FontAwesome.heart, size: 20,) : Icon(FontAwesome.heart_empty, size: 20,),
                 title: Text("Favorite"),
                 activeColor: ColorPalette.lightblue),
             BottomNavyBarItem(
-                icon: Icon(Icons.search),
-                title: Text("Search"),
+              textAlign: TextAlign.center,
+                icon: Icon(Icons.radio, size: 20,),
+                title: Text("Radio"),
                 activeColor: ColorPalette.lightblue),
             BottomNavyBarItem(
+              textAlign: TextAlign.center,
                 icon: Icon(Icons.person),
                 title: Text("Profile"),
                 activeColor: ColorPalette.lightblue),
@@ -182,7 +186,7 @@ class _SliderView extends StatelessWidget {
             ListTile(
               title: Text(
                 'Library',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: ColorPalette.primaryText),
               ),
               leading: Icon(
                 Icons.library_music,
@@ -192,7 +196,7 @@ class _SliderView extends StatelessWidget {
             ListTile(
               title: Text(
                 'Radio',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: ColorPalette.primaryText),
               ),
               leading: Icon(
                 Icons.headset,
@@ -202,7 +206,7 @@ class _SliderView extends StatelessWidget {
             ListTile(
               title: Text(
                 'Music',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: ColorPalette.primaryText),
               ),
               leading: Icon(
                 Icons.music_note,
@@ -212,7 +216,7 @@ class _SliderView extends StatelessWidget {
             ListTile(
               title: Text(
                 'List Music',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: ColorPalette.primaryText),
               ),
               leading: Icon(
                 Icons.queue_music,
@@ -222,7 +226,7 @@ class _SliderView extends StatelessWidget {
             ListTile(
               title: Text(
                 'Search',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: ColorPalette.primaryText),
               ),
               leading: Icon(
                 Icons.search,
@@ -232,7 +236,7 @@ class _SliderView extends StatelessWidget {
             ListTile(
               title: Text(
                 'Sign out',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: ColorPalette.primaryText),
               ),
               leading: Icon(
                 Icons.logout,

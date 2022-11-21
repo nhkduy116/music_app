@@ -35,6 +35,9 @@ dependencies:
     sdk: flutter
   flutter_swiper: ^1.1.6
   line_icons: ^2.0.1
+  # file_picker: ^5.2.2
+  intl: ^0.17.0 
+  carousel_slider: ^4.1.1
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -44,8 +47,19 @@ dependencies:
 
 dev_dependencies:
   font_awesome_flutter: ^8.8.1
+  flutter_launcher_icons: ^0.10.0
+  flutter_app_name: ^0.1.1
   flutter_test:
     sdk: flutter
+
+flutter_icons:
+  image_path: "assets/app_img/appImg2.jpeg" 
+  android: true
+  ios: true
+  # optionally, as transparency is not allowed on app store
+  # remove_alpha_ios: true
+flutter_app_name:
+  name: "Music App"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -68,6 +82,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/musics/
+    - assets/app_img/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
