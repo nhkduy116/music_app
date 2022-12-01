@@ -40,12 +40,15 @@ class _PageCenterState extends State<PageCenter> {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: SingleChildScrollView(
+      backgroundColor: ColorPalette.primaryColor,
+      body: SafeArea(
+        child: SingleChildScrollView(
         child: Container(
           width: _width,
           height: _height,
           padding: EdgeInsets.only(top: 35, right: 20, bottom: 35, left: 20),
           color: Color.fromRGBO(255, 255, 255, 1),
+          // color: ColorPalette.primaryColor,
           child: SizedBox(
             width: _width,
             height: _height,
@@ -103,6 +106,11 @@ class _PageCenterState extends State<PageCenter> {
                           ),
                           TextFormField(
                             decoration: const InputDecoration(
+                              // border: InputBorder.none,
+                              // focusedBorder: InputBorder.none,
+                              // enabledBorder: InputBorder.none,
+                              // errorBorder: InputBorder.none,
+                              // disabledBorder: InputBorder.none,
                                 icon: FaIcon(
                                   FontAwesomeIcons.lock,
                                   size: 20,
@@ -232,6 +240,7 @@ class _PageCenterState extends State<PageCenter> {
             ),
           ),
         ),
+      )
       ),
     );
   }

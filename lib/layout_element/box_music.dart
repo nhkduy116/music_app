@@ -113,7 +113,7 @@ class _BoxMusicssState extends State<BoxMusicss> {
       child: Container(
         margin: EdgeInsets.only(bottom: 15),
         width: width,
-        height: height / 8,
+        height: height * 0.123,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: widget.albMusic.colorStart
@@ -122,6 +122,7 @@ class _BoxMusicssState extends State<BoxMusicss> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Container(
+              // width: height*0.123,
               child: Expanded(
                 flex: 1,
                 child: ClipRRect(
@@ -161,39 +162,39 @@ class _BoxMusicssState extends State<BoxMusicss> {
                         widget.albMusic.title,
                         style: TextStyle(color: Colors.white, fontSize: 20),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          GestureDetector(
-                            onTap: (() {}),
-                            child: Icon(
-                              Icons.skip_previous,
-                              color: Colors.white,
-                              size: 35,
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: (() {
-                              setState(() {
-                                _color = !_color;
-                              });
-                            }),
-                            child: Icon(
-                              getData(_color),
-                              color: Colors.white,
-                              size: 35,
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: (() {}),
-                            child: Icon(
-                              Icons.skip_next,
-                              color: Colors.white,
-                              size: 35,
-                            ),
-                          ),
-                        ],
-                      )
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.center,
+                      //   children: <Widget>[
+                      //     GestureDetector(
+                      //       onTap: (() {}),
+                      //       child: Icon(
+                      //         Icons.skip_previous,
+                      //         color: Colors.white,
+                      //         size: 35,
+                      //       ),
+                      //     ),
+                      //     GestureDetector(
+                      //       onTap: (() {
+                      //         setState(() {
+                      //           _color = !_color;
+                      //         });
+                      //       }),
+                      //       child: Icon(
+                      //         getData(_color),
+                      //         color: Colors.white,
+                      //         size: 35,
+                      //       ),
+                      //     ),
+                      //     GestureDetector(
+                      //       onTap: (() {}),
+                      //       child: Icon(
+                      //         Icons.skip_next,
+                      //         color: Colors.white,
+                      //         size: 35,
+                      //       ),
+                      //     ),
+                      //   ],
+                      // )
                     ],
                   ),
                 ),

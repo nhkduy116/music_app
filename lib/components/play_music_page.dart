@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_import, implementation_imports, unused_local_variable, sized_box_for_whitespace, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, prefer_const_declarations, non_constant_identifier_names, unused_import, sort_child_properties_last, depend_on_referenced_packages, import_of_legacy_library_into_null_safe, unused_element
 
 import 'dart:async';
-import 'dart:ffi';
 import 'dart:io';
 import 'dart:math';
 import 'dart:ui';
@@ -260,7 +259,7 @@ class _PlayMusicPageState extends State<PlayMusicPage>
                               });
 
                               return AlertDialog(
-                                backgroundColor: Colors.yellow.shade200,
+                                backgroundColor: ColorPalette.primaryIcon,
                                 content: Text('Add this song to Your Favorite'),
                               );
                             }).then((val) {
@@ -307,7 +306,7 @@ class _PlayMusicPageState extends State<PlayMusicPage>
               ),
             ),
             Slider(
-                activeColor: ColorPalette.avtiveSliderMusic,
+                activeColor: ColorPalette.primaryIcon,
                 inactiveColor: ColorPalette.inavtiveSliderMusic,
                 min: 0,
                 max: duration.inSeconds.toDouble(),
@@ -384,7 +383,7 @@ class _PlayMusicPageState extends State<PlayMusicPage>
                     },
                     child: CircleAvatar(
                       radius: 35,
-                      backgroundColor: ColorPalette.avtiveSliderMusic,
+                      backgroundColor: ColorPalette.primaryIcon,
                       child: Icon(
                         playIcon,
                         color: ColorPalette.primaryColor,

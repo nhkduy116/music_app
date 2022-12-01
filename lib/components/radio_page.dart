@@ -76,113 +76,105 @@ class _PageContentState extends State<PageContent> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return Container(
+    return SafeArea(
+        child: Container(
       width: width,
       height: height,
       child: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.only(top: width * 0.13),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              Container(
-                width: width,
-                height: height * 0.22,
-                padding: EdgeInsets.only(
-                  top: 20,
-                  bottom: 5,
-                  left: 20,
-                  right: 20,
-                ),
-                // color: Colors.grey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'Radio',
-                      style: TextStyle(
-                          color: ColorPalette.primaryText,
-                          fontSize: 42,
-                          fontWeight: FontWeight.bold),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            Container(
+              width: width,
+              height: height * 0.17,
+              padding: EdgeInsets.only(
+                // top: 20,
+                // bottom: 5,
+                left: 20,
+                right: 20,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    'Radio',
+                    style: TextStyle(
+                        color: ColorPalette.primaryText,
+                        fontSize: 42,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Container(
+                    // color: Colors.yellow,
+                    height: height * 0.08,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          'Geez Radio Weekly',
+                          style: TextStyle(
+                              color: ColorPalette.primaryText,
+                              fontSize: 23,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          'Geez Radio Weekly',
+                          style: TextStyle(
+                              color: ColorPalette.greyText, fontSize: 16),
+                        )
+                      ],
                     ),
-                    Container(
-                      // color: Colors.yellow,
-                      height: height * 0.08,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            'Geez Radio Weekly',
-                            style: TextStyle(
-                                color: ColorPalette.primaryText,
-                                fontSize: 23,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            'Geez Radio Weekly',
-                            style: TextStyle(
-                                color: ColorPalette.greyText, fontSize: 16),
-                          )
-                        ],
-                      ),
-                    )
-                  ],
-                ),
+                  )
+                ],
               ),
-              CarouselSlider(
-                options: CarouselOptions(
-                  autoPlay: true,
-                  aspectRatio: 2.0,
-                  viewportFraction: 0.85,
-                  enlargeCenterPage: true,
-                ),
-                items: imageSliders,
+            ),
+            CarouselSlider(
+              options: CarouselOptions(
+                autoPlay: true,
+                aspectRatio: 2.0,
+                viewportFraction: 0.85,
+                enlargeCenterPage: true,
               ),
-              Container(
-                width: width,
-                height: height * 0.07,
-                padding: EdgeInsets.only(
-                  top: 20,
-                  bottom: 5,
-                  left: 20,
-                  right: 20,
-                ),
-                // color: Colors.grey,
-                child: Text(
-                  'Popular',
-                  style: TextStyle(
-                      color: ColorPalette.primaryText,
-                      fontSize: 23,
-                      fontWeight: FontWeight.bold),
-                ),
+              items: imageSliders,
+            ),
+            Container(
+              width: width,
+              height: height * 0.07,
+              padding: EdgeInsets.only(
+                top: 20,
+                bottom: 5,
+                left: 20,
+                right: 20,
               ),
-              Container(
-                width: width,
-                padding: EdgeInsets.only(
-                  // top: 10,
-                  // bottom: 10,
-                  left: 20,
-                  right: 20,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: List.generate(boxRadio.length, (index) {
-                    return BoxRadio(
-                      width,
-                      boxRadio[index].img,
-                      boxRadio[index].title,
-                      boxRadio[index].content,);
-                  }),
-                ),
+              // color: Colors.grey,
+              child: Text(
+                'Popular',
+                style: TextStyle(
+                    color: ColorPalette.primaryText,
+                    fontSize: 23,
+                    fontWeight: FontWeight.bold),
               ),
-            ],
-          ),
+            ),
+            Container(
+              width: width,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: List.generate(boxRadio.length, (index) {
+                  return BoxRadio(
+                    width,
+                    boxRadio[index].img,
+                    boxRadio[index].title,
+                    boxRadio[index].content,
+                  );
+                }),
+              ),
+            ),
+          ],
         ),
       ),
-    );
+    ));
   }
 }
 
