@@ -128,8 +128,8 @@ class _HomePageState extends State<HomePage> {
 
 class _SliderView extends StatelessWidget {
   final Function(String)? onItemClick;
-  final String _un = "Duy Nguyen";
-  final String _pw = "duynguyen11062002@gmail.com";
+  final String _un = "Account";
+  final String _pw = "account1234@gmail.com";
 
   const _SliderView({Key? key, this.onItemClick}) : super(key: key);
 
@@ -283,7 +283,7 @@ class CustomerSearchDelegate extends SearchDelegate {
   @override
   ThemeData appBarTheme(BuildContext context) {
     return ThemeData(
-      textSelectionColor: Colors.white,
+      // textSelectionColor: Colors.white,
       appBarTheme: const AppBarTheme(
         brightness: Brightness.light,
         color: ColorPalette.primaryColor,

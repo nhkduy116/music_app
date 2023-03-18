@@ -36,7 +36,7 @@ class _PageCenterSignupState extends State<PageCenterSignup> {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
     return SingleChildScrollView(
-      child: Container(
+      child: Container(  
         width: _width,
         height: _height,
         padding: EdgeInsets.only(top: 35, right: 20, bottom: 35, left: 20),

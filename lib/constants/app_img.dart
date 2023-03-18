@@ -16,7 +16,7 @@ class Images {
   static const String login_layout = imgPath + 'login_img.png';
   static const String signup_layout = imgPath + 'signup_img.png';
 
-  static const String img_account = imgPath + 'img_account.jpg';
+  static const String img_account = imgPath + 'ly_answer.jpeg';
 
   static const String img_slider1 = imgPath + 'img_lofi_music.jpeg';
   static const String img_slider2 = imgPath + 'img_dj_music.jpeg';
